@@ -1,0 +1,38 @@
+﻿<Items>
+
+	<Item>
+		<ItemID>1</ItemID>
+		<ItemName>Machete</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>2</ItemID>
+		<ItemName>Bandage</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>3</ItemID>
+		<ItemName>Old Hammer</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>4</ItemID>
+		<ItemName>Rope</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>5</ItemID>
+		<ItemName>Batteries</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>6</ItemID>
+		<ItemName>Climbing Axe</ItemName>
+	</Item>
+
+	<Item>
+		<ItemID>7</ItemID>
+		<ItemName>Sattelite Phone</ItemName>
+	</Item>
+
+</Items>
