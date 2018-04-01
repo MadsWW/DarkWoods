@@ -35,4 +35,9 @@
 		<ItemName>Sattelite Phone</ItemName>
 	</Item>
 
+  <Item>
+    <ItemID>8</ItemID>
+    <ItemName>Torch</ItemName>
+  </Item>
+
 </Items>
