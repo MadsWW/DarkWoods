@@ -9,8 +9,9 @@ public enum Direction { North, East, South, West };
 
 public class TextManager : MonoBehaviour {
 
-    public GameProgress gameProg;
+    KeyController keyControl;
 
+    [Header("All UIText Elements")]
     public Text roomName;
 	public Text roomText;
 	public Text itemDescription;
@@ -18,9 +19,11 @@ public class TextManager : MonoBehaviour {
 	public List<Room> _rooms = new List<Room>();
 	public List<Item> _items = new List<Item>();
 
+    [Header("XML Documents")]
 	public TextAsset xmlRoom;
 	public TextAsset xmlItem;
 
+    [Header("Various standard strings")]
 	public string _noItemText;
     public string _cantEnterRoom;
     public string _cantPickupItem;
@@ -28,21 +31,16 @@ public class TextManager : MonoBehaviour {
 
     public int resetDescriptionTimer;
 
-
+    // Sets all text for first room
 	private void Start ()
 	{
 		FillRoomItemList();
 		SetRoomText (_rooms[0]);
 		ResetDescriptionText ();
 
-        SetupGame();
-
-    }
-
-    private void SetupGame()
-    {
+        keyControl = FindObjectOfType<KeyController>();
         Room room = _rooms[0];
-        gameProg.SetDirectionButtons(room);
+        keyControl.SetDirectionButtons(room);
     }
 
 
@@ -72,15 +70,26 @@ public class TextManager : MonoBehaviour {
         // Takes data from XMLItem to individual lists.
         XmlNodeList itemIDList = itemData.GetElementsByTagName("ItemID");
 		XmlNodeList itemNameList = itemData.GetElementsByTagName("ItemName");
+        XmlNodeList itemMergeWith = itemData.GetElementsByTagName("ItemMergeWith");
+        XmlNodeList itemMergeTo = itemData.GetElementsByTagName("ItemMergeTo");
 
 
         // Add all item information to the specific items.
 		for (int i = 0; i < itemIDList.Count; i++) 
 		{
-			item = new Item(Convert.ToInt32(itemIDList[i].InnerText), itemNameList[i].InnerText);
-			_items.Add(item);
-            
+            item = new Item();
+
+            item._itemID = Convert.ToInt32(itemIDList[i].InnerText);
+            item._itemName = itemNameList[i].InnerText;
+            _items.Add(item);            
 		}
+
+        //Adds information to Items which item is needed to merge.
+        for (int i = 0; i < itemIDList.Count; i++)
+        {
+            _items[i]._mergeWithItem = SetItem(Convert.ToInt32(itemMergeWith[i].InnerText));
+            _items[i]._mergeToItem = SetItem(Convert.ToInt32(itemMergeTo[i].InnerText));
+        }
 
         // Adds all roominformation to the specific rooms.
         for (int i = 0; i < roomNameList.Count; i++) 
@@ -128,7 +137,7 @@ public class TextManager : MonoBehaviour {
     }
 
     //returns room from depending on integer input, 0 = null.
-    public Room SetRoom(int i)
+    private Room SetRoom(int i)
     {
         if (i != 0)
         {
@@ -148,17 +157,11 @@ public class TextManager : MonoBehaviour {
 		roomText.text = room._roomText;
 	}
 
-	// Set Description of room into text area
-	public void SetDescriptionText(int roomNumber)
-	{
-		itemDescription.text = _rooms[roomNumber]._roomDescription;
-		Invoke("ResetDescriptionText", resetDescriptionTimer);
-	}
-
+    //Changes description text
 	public void DescriptionText (string text)
 	{
 		itemDescription.text = text;
-		Invoke("ResetDescriptionText", resetDescriptionTimer);
+		Invoke("ResetDescriptionText", resetDescriptionTimer); // Change this later, depending of test outcome or make it a static IEnumerator
 	}
 
 	//Resets description text

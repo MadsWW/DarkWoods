@@ -226,6 +226,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameProgress.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ItemButton.cs" />
     <Compile Include="Assets\Scripts\KeyController.cs" />
     <Compile Include="Assets\Scripts\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Room.cs" />

@@ -3,41 +3,78 @@
 	<Item>
 		<ItemID>1</ItemID>
 		<ItemName>Machete</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>2</ItemID>
-		<ItemName>Bandage</ItemName>
+		<ItemName>Crowbar</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>3</ItemID>
-		<ItemName>Old Hammer</ItemName>
+		<ItemName>Key</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>4</ItemID>
 		<ItemName>Rope</ItemName>
+    <ItemMergeWith>9</ItemMergeWith>
+    <ItemMergeTo>10</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>5</ItemID>
 		<ItemName>Batteries</ItemName>
+    <ItemMergeWith>8</ItemMergeWith>
+    <ItemMergeTo>11</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>6</ItemID>
-		<ItemName>Climbing Axe</ItemName>
+		<ItemName>Rusted Axe</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>7</ItemID>
-		<ItemName>Sattelite Phone</ItemName>
+		<ItemName>Walky Talky</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
   <Item>
     <ItemID>8</ItemID>
-    <ItemName>Torch</ItemName>
+    <ItemName>Torch (Empty)</ItemName>
+    <ItemMergeWith>5</ItemMergeWith>
+    <ItemMergeTo>11</ItemMergeTo>
+  </Item>
+  
+  <Item>
+    <ItemID>9</ItemID>
+    <ItemName>Carabiner</ItemName>
+    <ItemMergeWith>4</ItemMergeWith>
+    <ItemMergeTo>10</ItemMergeTo>
+  </Item>
+
+  <Item>
+    <ItemID>10</ItemID>
+    <ItemName>Climbing Gear</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
+  </Item>
+
+  <Item>
+    <ItemID>11</ItemID>
+    <ItemName>Torch (Full)</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
   </Item>
 
 </Items>
