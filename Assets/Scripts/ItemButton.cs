@@ -31,18 +31,18 @@ public class ItemButton : MonoBehaviour
         if (selected)
         {
             print("deselecting");
-            selected = false;
+            selected = !selected;
             ResetButton();
 
         }
         else if (!selected && GameProgress.selectedItem == null)
         {
-            selected = true;
+            selected = !selected;
             SetSelectedItem();
         }
         else if (!selected && GameProgress.selectedItem != null)
         {
-            selected = true;
+            selected = !selected;
             SetMergeItem();
         }
 
@@ -52,11 +52,15 @@ public class ItemButton : MonoBehaviour
     private void ResetButton()
     {
         GameProgress.selectedButton.GetComponent<Image>().color = Color.white;
-        GameProgress.mergeButton.GetComponent<Image>().color = Color.white;
         GameProgress.selectedButton.GetComponent<ItemButton>().selected = false;
-        GameProgress.mergeButton.GetComponent<ItemButton>().selected = false;
         GameProgress.selectedItem = null;
-        GameProgress.mergeItem = null;
+
+        if(GameProgress.mergeItem != null)
+        {
+            GameProgress.mergeButton.GetComponent<Image>().color = Color.white;
+            GameProgress.mergeButton.GetComponent<ItemButton>().selected = false;
+            GameProgress.mergeItem = null;
+        }
 
     }
     private void SetSelectedItem()

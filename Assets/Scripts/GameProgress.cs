@@ -62,7 +62,22 @@ public class GameProgress : MonoBehaviour {
     {
         if (room._item != null)
         {
-            TakeItem(room);
+            TakeItem(room._item);
+            room._item = null;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool CanMerge()
+    {
+        bool canMerge = selectedItem == mergeItem._mergeWithItem;
+        if (canMerge)
+        {
+            TakeItem(selectedItem._mergeToItem);
             return true;
         }
         else
@@ -77,13 +92,11 @@ public class GameProgress : MonoBehaviour {
     #region PRIVATE_METHODS
 
     //Takes item from the room into inventory and deletes it from the room.
-    private void TakeItem(Room room)
+    private void TakeItem(Item item)
     {
-        Item item = room._item;
         _inventory.Add(item);
         CheckForWin(item);
         AddInventoryButton(item);
-        room._item = null;
     }
 
     //Wins if a certain item is grabbed.
@@ -105,6 +118,16 @@ public class GameProgress : MonoBehaviour {
         ItemButton itemButton = go.GetComponent<ItemButton>();
         itemButton.SetButtonText(item);
 
+    }
+
+    private void ResetButton()
+    {
+        selectedButton.GetComponent<Image>().color = Color.white;
+        mergeButton.GetComponent<Image>().color = Color.white;
+        selectedButton.GetComponent<ItemButton>().selected = false;
+        mergeButton.GetComponent<ItemButton>().selected = false;
+        selectedItem = null;
+        mergeItem = null;
     }
 
     #endregion PRIVATE_METHODS

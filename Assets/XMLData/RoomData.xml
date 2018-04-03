@@ -107,7 +107,7 @@
 		<RoomItem>1</RoomItem>
 		<NeedItem>0</NeedItem>
 		<NeedItemItem>6</NeedItemItem>
-		<Direction>South, East</Direction>
+		<Direction>East</Direction>
 	</Room>
 
 	<Room>
@@ -129,7 +129,7 @@
 		<RoomItem>2</RoomItem>
 		<NeedItem>0</NeedItem>
 		<NeedItemItem>0</NeedItemItem>
-		<Direction>West</Direction>
+		<Direction>South, West</Direction>
 	</Room>
 
 </RoomData>

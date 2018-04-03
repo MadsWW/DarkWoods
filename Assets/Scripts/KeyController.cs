@@ -85,9 +85,6 @@ public class KeyController : MonoBehaviour
             if (_gameProgress.ItemTakenFromRoom(room))
             {
                 _textManager.DescriptionText(_textManager._pickUpText + item._itemName);
-                GameProgress.selectedButton.GetComponent<Image>().color = Color.white;
-                GameProgress.selectedButton = null;
-                GameProgress.selectedItem = null;
             }
             else
             {
@@ -135,8 +132,13 @@ public class KeyController : MonoBehaviour
     // Merges the items into new item if possible.
     public void MergeItem()
     {
-        // bool to check if the selectItems (from gamprogress) can be merged.
-        // if can send message and let Gameprogress handle the merge.
-        // if not send message that merge is not possible.
+        if (_gameProgress.CanMerge())
+        {
+            _textManager.DescriptionText("Merge Succesfull");
+        }
+        else
+        {
+            _textManager.DescriptionText("Could not merge these items");
+        }
     }
 }
