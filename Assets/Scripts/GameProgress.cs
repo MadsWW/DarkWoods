@@ -6,20 +6,13 @@ using UnityEngine.UI;
 
 public class GameProgress : MonoBehaviour {
 
-    public GameObject ItemButton;
+    public GameObject ItemBut;
     public Transform invTransform;
-
-    private List<Item> _inventory = new List<Item>();
-
     public int _itemIDForWin;
 
-    private Vector3 butPos;
+    private Vector3 butPosition;
 
-    public static Item selectedItem;
-    public static Item mergeItem;
-    public static Button selectedButton;
-    public static Button mergeButton;
-    // Make static Room currentRoom
+    // Make Room currentRoom
 
 
     #region PUBLIC_FUNCTIONS
@@ -28,7 +21,7 @@ public class GameProgress : MonoBehaviour {
     public bool CanEnterNextRoom (Item item, Room room)
 	{
         bool noItemReqToEnter = room._requiredItemToEnter == null;
-        bool gotItemReqToEnter = room._requiredItemToEnter == selectedItem;
+        bool gotItemReqToEnter = room._requiredItemToEnter == ItemButton.selectedItem;
 
         if (gotItemReqToEnter || noItemReqToEnter)
         {
@@ -43,7 +36,7 @@ public class GameProgress : MonoBehaviour {
 	//Checks if player has got required item in inventory to grab the item in the room.
 	public bool CanGrabItemInRoom (Item item,Room room)
 	{
-        bool itemReq = room._requiredItemForItem == selectedItem;
+        bool itemReq = room._requiredItemForItem == ItemButton.selectedItem;
         bool noItemReq = room._requiredItemForItem == null;
 
         if (itemReq || noItemReq) 
@@ -74,10 +67,10 @@ public class GameProgress : MonoBehaviour {
 
     public bool CanMerge()
     {
-        bool canMerge = selectedItem == mergeItem._mergeWithItem;
+        bool canMerge = ItemButton.selectedItem == ItemButton.mergeItem._mergeWithItem;
         if (canMerge)
         {
-            TakeItem(selectedItem._mergeToItem);
+            TakeItem(ItemButton.selectedItem._mergeToItem);
             return true;
         }
         else
@@ -94,7 +87,6 @@ public class GameProgress : MonoBehaviour {
     //Takes item from the room into inventory and deletes it from the room.
     private void TakeItem(Item item)
     {
-        _inventory.Add(item);
         CheckForWin(item);
         AddInventoryButton(item);
     }
@@ -109,25 +101,19 @@ public class GameProgress : MonoBehaviour {
 		}
 	}
 
+    //Make object pooling when items count gets larger then screen can show. ##
     //Add UI Button to Inventory UI when an item is picked up.
     private void AddInventoryButton(Item item)
     {
-        GameObject go = Instantiate(ItemButton, invTransform) as GameObject;
-        go.transform.position -= butPos;
-        butPos += new Vector3(0, go.GetComponent<RectTransform>().rect.height * 0.75f, 0);
+        GameObject go = Instantiate(ItemBut, invTransform) as GameObject;
+        go.transform.position -= butPosition;
+
+        Vector3 buttonHeight = new Vector3(0, go.GetComponent<RectTransform>().rect.height * 0.75f, 0);
+        butPosition += buttonHeight;
+
         ItemButton itemButton = go.GetComponent<ItemButton>();
         itemButton.SetButtonText(item);
 
-    }
-
-    private void ResetButton()
-    {
-        selectedButton.GetComponent<Image>().color = Color.white;
-        mergeButton.GetComponent<Image>().color = Color.white;
-        selectedButton.GetComponent<ItemButton>().selected = false;
-        mergeButton.GetComponent<ItemButton>().selected = false;
-        selectedItem = null;
-        mergeItem = null;
     }
 
     #endregion PRIVATE_METHODS

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Vector2 should be added to RoomXML data.
+// Makes for easier extension of game. - Less hardcoded data. 
 public class WorldCreator : MonoBehaviour {
 
 	public int[,] _worldCoor = new int [5,4];

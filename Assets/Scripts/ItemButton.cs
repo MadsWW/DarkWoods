@@ -6,10 +6,17 @@ using UnityEngine.UI;
 public class ItemButton : MonoBehaviour
 {
 
+
+
     Item _buttonItem;
     Text _buttonText;
     Button _button;
     public bool selected = false;
+
+    public static Item selectedItem;
+    public static Item mergeItem;
+    public static Button selectedButton;
+    public static Button mergeButton;
 
 
     private void Start()
@@ -19,6 +26,7 @@ public class ItemButton : MonoBehaviour
         _button.onClick.AddListener(SetItem);
     }
 
+    //Gets called when button is instantiated.
     public void SetButtonText(Item it)
     {
         _buttonText = GetComponentInChildren<Text>();
@@ -26,21 +34,20 @@ public class ItemButton : MonoBehaviour
         _buttonText.text = it._itemName;
     }
 
+    //Selects button depending on it state.
     private void SetItem()
     {
         if (selected)
         {
-            print("deselecting");
             selected = !selected;
             ResetButton();
-
         }
-        else if (!selected && GameProgress.selectedItem == null)
+        else if (!selected && selectedItem == null)
         {
             selected = !selected;
             SetSelectedItem();
         }
-        else if (!selected && GameProgress.selectedItem != null)
+        else if (!selected && selectedItem != null)
         {
             selected = !selected;
             SetMergeItem();
@@ -48,40 +55,43 @@ public class ItemButton : MonoBehaviour
 
     }
 
-
+    //Reset both static item/buttons.
     private void ResetButton()
     {
-        GameProgress.selectedButton.GetComponent<Image>().color = Color.white;
-        GameProgress.selectedButton.GetComponent<ItemButton>().selected = false;
-        GameProgress.selectedItem = null;
+        selectedButton.GetComponent<Image>().color = Color.white;
+        selectedButton.GetComponent<ItemButton>().selected = false;
+        selectedItem = null;
 
-        if(GameProgress.mergeItem != null)
+        if(mergeItem != null)
         {
-            GameProgress.mergeButton.GetComponent<Image>().color = Color.white;
-            GameProgress.mergeButton.GetComponent<ItemButton>().selected = false;
-            GameProgress.mergeItem = null;
+            mergeButton.GetComponent<Image>().color = Color.white;
+            mergeButton.GetComponent<ItemButton>().selected = false;
+            mergeItem = null;
         }
 
     }
+
+    //Sets Selected Item/Button
     private void SetSelectedItem()
     {
-        if (GameProgress.selectedItem != null)
+        if (selectedItem != null)
         {
-            GameProgress.selectedButton.GetComponent<Image>().color = Color.white;
+            selectedButton.GetComponent<Image>().color = Color.white;
         }
-            GameProgress.selectedItem = _buttonItem;
-            GameProgress.selectedButton = _button;
+            selectedItem = _buttonItem;
+            selectedButton = _button;
             GetComponent<Image>().color = Color.green;
     }
 
+    //Sets Merge Item/Button
     private void SetMergeItem()
     {
-        if(GameProgress.mergeItem != null)
+        if(mergeItem != null)
         {
-            GameProgress.mergeButton.GetComponent<Image>().color = Color.white;
+            mergeButton.GetComponent<Image>().color = Color.white;
         }
-        GameProgress.mergeItem = _buttonItem;
-        GameProgress.mergeButton = _button;
+        mergeItem = _buttonItem;
+        mergeButton = _button;
         GetComponent<Image>().color = Color.yellow;
     }
 

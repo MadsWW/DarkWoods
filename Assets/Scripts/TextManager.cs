@@ -16,8 +16,8 @@ public class TextManager : MonoBehaviour {
 	public Text roomText;
 	public Text itemDescription;
 
-	public List<Room> _rooms = new List<Room>();
-	public List<Item> _items = new List<Item>();
+	public List<Room> _rooms = new List<Room>(); // Make property so only get is accesible
+	public List<Item> _items = new List<Item>(); // Make property so only get is accesible
 
     [Header("XML Documents")]
 	public TextAsset xmlRoom;
@@ -43,6 +43,7 @@ public class TextManager : MonoBehaviour {
         keyControl.SetDirectionButtons(room);
     }
 
+    #region PRIVATE_FUNCTIONS
 
     //Takes all XML data in turns into Lists filled with Room/Item Classes.
     private void FillRoomItemList ()
@@ -121,7 +122,6 @@ public class TextManager : MonoBehaviour {
 		}
 	}
 
-
     //returns item from depending on integer input, 0 = null.
     private Item SetItem(int i)
     {
@@ -150,9 +150,12 @@ public class TextManager : MonoBehaviour {
         }
     }
 
+    #endregion PRIVATE_FUNCTIONS
 
-	//Changes text according to currentroom.
-	public void SetRoomText(Room room){
+    #region PUBLIC_CHANGETEXT_METHODS
+
+    //Changes text according to currentroom.
+    public void SetRoomText(Room room){
 		roomName.text = room._roomName;
 		roomText.text = room._roomText;
 	}
@@ -169,5 +172,7 @@ public class TextManager : MonoBehaviour {
 	{
 		itemDescription.text = string.Empty;
 	}
+
+    #endregion PUBLIC_CHANGETEXT_METHODS
 }
 

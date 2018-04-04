@@ -6,11 +6,15 @@ using UnityEngine.UI;
 
 public class KeyController : MonoBehaviour
 {
+    //Make Custom Events for each separate button to make more Methods private. ##
 
+
+    [Header("Holds Scripts named:")]
     public TextManager _textManager;
     public GameProgress _gameProgress;
     public WorldCreator _worldCreator;
 
+    [Header("Holds navButtons")]
     public Button[] _buttons;
 
     private int x = 0;
@@ -73,7 +77,7 @@ public class KeyController : MonoBehaviour
         _textManager.DescriptionText(room._roomDescription);
     }
 
-    //Pick up item if possible.
+    //Sets text depending if grabitem is possible.
     public void GrabItem()
     {
         Room room = _textManager._rooms[_worldCreator._worldCoor[x, y] - 1];
@@ -96,7 +100,6 @@ public class KeyController : MonoBehaviour
             _textManager.DescriptionText(_textManager._cantPickupItem);
         }
     }
-
 
     // Enables/Disables DirectionButtons depending on which way you can travel in current room.
     public void SetDirectionButtons(Room room)
@@ -129,7 +132,7 @@ public class KeyController : MonoBehaviour
 
     }
 
-    // Merges the items into new item if possible.
+    // Sets text if merge of items is succesfull or not.
     public void MergeItem()
     {
         if (_gameProgress.CanMerge())
