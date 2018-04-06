@@ -72,8 +72,8 @@
 		<RoomText>Finnaly, I've reached the watchtower. Now I need to find that walky talky.</RoomText>
 		<RoomDescription>A lockbox sits in the corner of the room, I need to open it.</RoomDescription>
 		<RoomItem>7</RoomItem>
-		<NeedItem>3</NeedItem>
-		<NeedItemItem>6</NeedItemItem>
+		<NeedItem>2</NeedItem>
+		<NeedItemItem>3</NeedItemItem>
 		<Direction>East</Direction>
 	</Room>
 
@@ -85,7 +85,7 @@
 		<RoomItem>0</RoomItem>
 		<NeedItem>10</NeedItem>
 		<NeedItemItem>0</NeedItemItem>
-		<Direction>North, South, West</Direction>
+		<Direction>South, West</Direction>
 	</Room>
 
 	<Room>

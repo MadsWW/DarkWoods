@@ -37,6 +37,7 @@ public class KeyController : MonoBehaviour
                 x += nextx;
                 _textManager.SetRoomText(room);
                 SetDirectionButtons(room);
+                ItemButton.ResetButton();
             }
             else
             {
@@ -61,6 +62,7 @@ public class KeyController : MonoBehaviour
                 y += nexty;
                 _textManager.SetRoomText(room);
                 SetDirectionButtons(room);
+                ItemButton.ResetButton();
             }
             else
             {
@@ -89,6 +91,7 @@ public class KeyController : MonoBehaviour
             if (_gameProgress.ItemTakenFromRoom(room))
             {
                 _textManager.DescriptionText(_textManager._pickUpText + item._itemName);
+                ItemButton.ResetButton();
             }
             else
             {
@@ -138,6 +141,7 @@ public class KeyController : MonoBehaviour
         if (_gameProgress.CanMerge())
         {
             _textManager.DescriptionText("Merge Succesfull");
+            ItemButton.ResetButton();
         }
         else
         {

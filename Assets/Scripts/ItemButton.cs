@@ -56,7 +56,7 @@ public class ItemButton : MonoBehaviour
     }
 
     //Reset both static item/buttons.
-    private void ResetButton()
+    public static void ResetButton()
     {
         selectedButton.GetComponent<Image>().color = Color.white;
         selectedButton.GetComponent<ItemButton>().selected = false;
