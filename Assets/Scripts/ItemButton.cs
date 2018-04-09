@@ -39,28 +39,30 @@ public class ItemButton : MonoBehaviour
     {
         if (selected)
         {
-            selected = !selected;
+            selected = false;
             ResetButton();
         }
         else if (!selected && selectedItem == null)
         {
-            selected = !selected;
+            selected = true;
             SetSelectedItem();
         }
         else if (!selected && selectedItem != null)
         {
-            selected = !selected;
+            selected = true;
             SetMergeItem();
         }
-
     }
 
     //Reset both static item/buttons.
     public static void ResetButton()
     {
-        selectedButton.GetComponent<Image>().color = Color.white;
-        selectedButton.GetComponent<ItemButton>().selected = false;
-        selectedItem = null;
+        if (selectedButton != null)
+        {
+            selectedButton.GetComponent<Image>().color = Color.white;
+            selectedButton.GetComponent<ItemButton>().selected = false;
+            selectedItem = null;
+        }
 
         if(mergeItem != null)
         {

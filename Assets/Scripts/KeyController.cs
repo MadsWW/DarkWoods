@@ -41,7 +41,7 @@ public class KeyController : MonoBehaviour
             }
             else
             {
-                _textManager.DescriptionText(_textManager._cantEnterRoom);
+                _textManager.AddActionToQueue(_textManager._cantEnterRoom);
             }
         }
     }
@@ -66,7 +66,7 @@ public class KeyController : MonoBehaviour
             }
             else
             {
-                _textManager.DescriptionText(_textManager._cantEnterRoom);
+                _textManager.AddActionToQueue(_textManager._cantEnterRoom);
             }
         }
     }
@@ -76,7 +76,7 @@ public class KeyController : MonoBehaviour
     {
         int roomNumber = _worldCreator._worldCoor[x, y] - 1;
         Room room = _textManager._rooms[roomNumber];
-        _textManager.DescriptionText(room._roomDescription);
+        _textManager.AddActionToQueue(room._roomDescription);
     }
 
     //Sets text depending if grabitem is possible.
@@ -90,17 +90,17 @@ public class KeyController : MonoBehaviour
         {
             if (_gameProgress.ItemTakenFromRoom(room))
             {
-                _textManager.DescriptionText(_textManager._pickUpText + item._itemName);
+                _textManager.AddActionToQueue(_textManager._pickUpText + item._itemName);
                 ItemButton.ResetButton();
             }
             else
             {
-                _textManager.DescriptionText(_textManager._noItemText);
+                _textManager.AddActionToQueue(_textManager._noItemText);
             }
         }
         else
         {
-            _textManager.DescriptionText(_textManager._cantPickupItem);
+            _textManager.AddActionToQueue(_textManager._cantPickupItem);
         }
     }
 
@@ -140,12 +140,12 @@ public class KeyController : MonoBehaviour
     {
         if (_gameProgress.CanMerge())
         {
-            _textManager.DescriptionText("Merge Succesfull");
+            _textManager.AddActionToQueue("Merge Succesfull");
             ItemButton.ResetButton();
         }
         else
         {
-            _textManager.DescriptionText("Could not merge these items");
+            _textManager.AddActionToQueue("Could not merge these items");
         }
     }
 }

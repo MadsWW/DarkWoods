@@ -6,13 +6,23 @@ using UnityEngine.UI;
 
 public class GameProgress : MonoBehaviour {
 
+    //Button Prefab + Parent Transform
     public GameObject ItemBut;
     public Transform invTransform;
+
+    //Item For Win Condition
     public int _itemIDForWin;
+    public string ItemTakenText;
 
-    private Vector3 butPosition;
+    private List<GameObject> inventory = new List<GameObject>();
+    private Vector3 nextPos;
+    private float buttonHeight;
+    private Vector3 ogTransform;
 
-    // Make Room currentRoom
+    // initial health and deprectiation depending on good or bad move.
+    private int health = 100;
+    private int badMove = 2;
+    private int goodMove = 1;
 
 
     #region PUBLIC_FUNCTIONS
@@ -25,10 +35,17 @@ public class GameProgress : MonoBehaviour {
 
         if (gotItemReqToEnter || noItemReqToEnter)
         {
+            if(gotItemReqToEnter && room._requiredItemToEnter != null)
+            {
+                ChangeHealth(goodMove);
+                //RemoveFromInventory(ItemButton.selectedButton); //Enable if you want items removed when going in room with another item.
+                room._requiredItemToEnter = null;
+            }
             return true;
         }
         else
         {
+            ChangeHealth(badMove);
             return false;
         }
 	}
@@ -41,10 +58,24 @@ public class GameProgress : MonoBehaviour {
 
         if (itemReq || noItemReq) 
 	    {
+            // Need Required Item to grab item and that item I need to grab must not be null.
+            if (itemReq && room._requiredItemForItem != null)
+            {
+                //RemoveFromInventory(ItemButton.selectedButton); //Enable if you want items removed when grabbing item in room with another item.
+                room._requiredItemForItem = null;  
+            }
+            //Check if item is not grabbed yet and there is an item in the room.
+            if (!room._itemgrabbed && room._item != null)
+            {
+                room._itemgrabbed = true;
+                room._roomDescription = ItemTakenText;
+            }
+            ChangeHealth(goodMove);
             return true;
         }
         else
         {
+            ChangeHealth(badMove);
             return false;
         }
 
@@ -67,22 +98,59 @@ public class GameProgress : MonoBehaviour {
 
     public bool CanMerge()
     {
-        bool canMerge = ItemButton.selectedItem == ItemButton.mergeItem._mergeWithItem;
-        if (canMerge)
+        if (ItemButton.selectedItem != null && ItemButton.mergeItem != null)
         {
-            TakeItem(ItemButton.selectedItem._mergeToItem);
-            return true;
+            bool canMerge = ItemButton.selectedItem == ItemButton.mergeItem._mergeWithItem;
+            if (canMerge)
+            {
+                RemoveFromInventory(ItemButton.selectedButton);
+                RemoveFromInventory(ItemButton.mergeButton);
+                TakeItem(ItemButton.selectedItem._mergeToItem);
+                ChangeHealth(goodMove);
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        ChangeHealth(badMove);
+        return false;
     }
     
     #endregion PUBLIC_FUNCTIONS
 
 
-    #region PRIVATE_METHODS
+    #region PRIVATE_INVENTORY_METHODS
+
+    //Make object pooling when items count gets larger then screen can show. ##
+    //Add UI Button to Inventory UI when an item is picked up.
+    private void AddInventoryButton(Item item)
+    {
+        //Make new prefab and add to inventory;
+        GameObject go = Instantiate(ItemBut, invTransform) as GameObject;
+        ogTransform = go.transform.position;
+        go.transform.position -= nextPos;
+        inventory.Add(go);
+
+        float height = go.GetComponent<RectTransform>().rect.height * 0.75f;
+        Vector3 butHeight = new Vector3(0,height,0);
+
+        SetButtonPosition(butHeight, go);
+
+        //Sets Text of ButtonPrefab
+        ItemButton itemButton = go.GetComponent<ItemButton>();
+        itemButton.SetButtonText(item);
+    }
+
+    //(Re)sets position of the buttons from inventory.
+    private void SetButtonPosition(Vector3 height, GameObject go)
+    {
+        nextPos = Vector3.zero;
+
+        foreach (GameObject invButton in inventory)
+        {
+            invButton.transform.position = ogTransform;
+            invButton.transform.position -= nextPos;
+            nextPos += height;
+        }
+    }
 
     //Takes item from the room into inventory and deletes it from the room.
     private void TakeItem(Item item)
@@ -91,30 +159,37 @@ public class GameProgress : MonoBehaviour {
         AddInventoryButton(item);
     }
 
-    //Wins if a certain item is grabbed.
-    //WinCondition needs to be changed. ##
-    private void CheckForWin (Item it)
-	{
-		if (it._itemID == _itemIDForWin) 
-		{
-			SceneManager.LoadScene("WinScene"); 
-		}
-	}
-
-    //Make object pooling when items count gets larger then screen can show. ##
-    //Add UI Button to Inventory UI when an item is picked up.
-    private void AddInventoryButton(Item item)
+    private void RemoveFromInventory(Button button)
     {
-        GameObject go = Instantiate(ItemBut, invTransform) as GameObject;
-        go.transform.position -= butPosition;
-
-        Vector3 buttonHeight = new Vector3(0, go.GetComponent<RectTransform>().rect.height * 0.75f, 0);
-        butPosition += buttonHeight;
-
-        ItemButton itemButton = go.GetComponent<ItemButton>();
-        itemButton.SetButtonText(item);
-
+        inventory.Remove(button.gameObject);
+        Destroy(button.gameObject);
     }
 
-    #endregion PRIVATE_METHODS
+    #endregion PRIVATE_INVENTORY_METHODS
+
+
+#region PRIVATE_WINLOSECONDITION_METHODS
+
+    private void ChangeHealth(int i)
+    {
+        health -= i;
+        //UI Slider to indicate health;
+        if (health <= 0)
+        {
+            //Lose Condition.
+        }
+    }
+
+    //Wins if a certain item is grabbed.
+    //WinCondition needs to be changed. ##
+    private void CheckForWin(Item it)
+    {
+        if (it._itemID == _itemIDForWin)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+    }
+
+    #endregion PRIVATE_WINLOSECONDITION_METHODS
+
 }

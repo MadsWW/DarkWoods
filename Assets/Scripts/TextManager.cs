@@ -19,6 +19,11 @@ public class TextManager : MonoBehaviour {
 	public List<Room> _rooms = new List<Room>(); // Make property so only get is accesible
 	public List<Item> _items = new List<Item>(); // Make property so only get is accesible
 
+    //Holds latest x action performed by user
+    public Queue<string> performedAction = new Queue<string>();
+    int count = 0;
+    int maxCount = 3;
+
     [Header("XML Documents")]
 	public TextAsset xmlRoom;
 	public TextAsset xmlItem;
@@ -172,6 +177,34 @@ public class TextManager : MonoBehaviour {
 	{
 		itemDescription.text = string.Empty;
 	}
+
+    public void AddActionToQueue(string action)
+    {
+        if (count < maxCount)
+        {
+            count++;
+            performedAction.Enqueue(action);
+            SetDescriptionText();
+        }
+        else
+        {
+            performedAction.Dequeue();
+            performedAction.Enqueue(action);
+           
+            SetDescriptionText();
+        }
+    }
+
+    private void SetDescriptionText()
+    {
+        itemDescription.text = string.Empty;
+
+        foreach (string s in performedAction)
+        {
+            itemDescription.text += s + "\n";
+        }
+    }
+
 
     #endregion PUBLIC_CHANGETEXT_METHODS
 }

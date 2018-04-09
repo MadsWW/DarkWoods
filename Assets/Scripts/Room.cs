@@ -13,6 +13,7 @@ public class Room
 	public Item _item;
 	public Item _requiredItemToEnter;
 	public Item _requiredItemForItem;
+    public bool _itemgrabbed = false;
 
     public List<Direction> _directions;
 }

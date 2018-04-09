@@ -69,18 +69,18 @@
 	<Room>
     <RoomID>7</RoomID>
 		<RoomName>3,0 - Firewatch Outpost</RoomName>
-		<RoomText>Finnaly, I've reached the watchtower. Now I need to find that walky talky.</RoomText>
+		<RoomText>Finally, I've reached the watchtower. Now I need to find that walky talky.</RoomText>
 		<RoomDescription>A lockbox sits in the corner of the room, I need to open it.</RoomDescription>
 		<RoomItem>7</RoomItem>
-		<NeedItem>2</NeedItem>
-		<NeedItemItem>3</NeedItemItem>
+		<NeedItem>3</NeedItem>
+		<NeedItemItem>2</NeedItemItem>
 		<Direction>East</Direction>
 	</Room>
 
 	<Room>
     <RoomID>8</RoomID>
 		<RoomName>3,1 - Steep Mountain Path</RoomName>
-		<RoomText>I finnaly reached the top of the cliff, the watchtower is only a few steps away.</RoomText>
+		<RoomText>I've reached the top of the cliff, the watchtower is only a few steps away.</RoomText>
 		<RoomDescription>But how do I get in, it seems locked down.</RoomDescription>
 		<RoomItem>0</RoomItem>
 		<NeedItem>10</NeedItem>
