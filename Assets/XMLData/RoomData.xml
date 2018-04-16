@@ -4,7 +4,7 @@
     <RoomID>1</RoomID>
 		<RoomName>0,1 - Dirt Path</RoomName>
 		<RoomText>You hear a loud yell, when you look back you find your friend laying on the floor harmed. When you further inspect him you see that his leg is broken.</RoomText>
-		<RoomDescription>I need to find stuff so I can help him, let's see what I got on me.</RoomDescription>
+		<RoomDescription>Looks bad, I need to find help, maybe in the Fire Watch Tower nearby. First look what I have on me.</RoomDescription>
 		<RoomItem>5</RoomItem>
 		<NeedItem>0</NeedItem>
 		<NeedItemItem>0</NeedItemItem>
@@ -15,7 +15,7 @@
     <RoomID>2</RoomID>
 		<RoomName>1,0 - Abandoned Hut</RoomName>
 		<RoomText>It looks like no one has been here for a while, everthing is covered with dust.</RoomText>
-		<RoomDescription>Still some stuff scattered around the hut, it's a mess.</RoomDescription>
+		<RoomDescription>Still some stuff scattered around the hut, maybe there is something usefull.</RoomDescription>
 		<RoomItem>3</RoomItem>
 		<NeedItem>1</NeedItem>
 		<NeedItemItem>0</NeedItemItem>
@@ -58,7 +58,7 @@
 	<Room>
     <RoomID>6</RoomID>
 		<RoomName>2,3 - Mine Entrance</RoomName>
-		<RoomText>An old Mine, it's hammered shut and has an warning sign on it. The path up ahead doesn't look safe, loose rocks everywhere.</RoomText>
+		<RoomText>An old Mine, it's hammered shut and has an warning sign on it. The path up ahead looks risky, loose rocks everywhere. But it should be fine if I take it slow.</RoomText>
 		<RoomDescription>Through the gaps in the wood, you can fagely spot something out, but I can't reach it.</RoomDescription>
 		<RoomItem>6</RoomItem>
 		<NeedItem>0</NeedItem>

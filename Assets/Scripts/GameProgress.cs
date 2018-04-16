@@ -20,10 +20,8 @@ public class GameProgress : MonoBehaviour {
     private Vector3 ogTransform;
 
     // initial health and deprectiation depending on good or bad move.
-    private int health = 100;
-    private int badMove = 2;
-    private int goodMove = 1;
-
+    public Slider healtSlider;
+    private int health = 120;
 
     #region PUBLIC_FUNCTIONS
 
@@ -35,17 +33,15 @@ public class GameProgress : MonoBehaviour {
 
         if (gotItemReqToEnter || noItemReqToEnter)
         {
-            if(gotItemReqToEnter && room._requiredItemToEnter != null)
+            if (gotItemReqToEnter && room._requiredItemToEnter != null)
             {
-                ChangeHealth(goodMove);
                 //RemoveFromInventory(ItemButton.selectedButton); //Enable if you want items removed when going in room with another item.
                 room._requiredItemToEnter = null;
             }
             return true;
         }
         else
-        {
-            ChangeHealth(badMove);
+        {   
             return false;
         }
 	}
@@ -69,13 +65,11 @@ public class GameProgress : MonoBehaviour {
             {
                 room._itemgrabbed = true;
                 room._roomDescription = ItemTakenText;
-            }
-            ChangeHealth(goodMove);
+            }         
             return true;
         }
         else
-        {
-            ChangeHealth(badMove);
+        {           
             return false;
         }
 
@@ -106,11 +100,9 @@ public class GameProgress : MonoBehaviour {
                 RemoveFromInventory(ItemButton.selectedButton);
                 RemoveFromInventory(ItemButton.mergeButton);
                 TakeItem(ItemButton.selectedItem._mergeToItem);
-                ChangeHealth(goodMove);
                 return true;
             }
         }
-        ChangeHealth(badMove);
         return false;
     }
     
@@ -170,13 +162,15 @@ public class GameProgress : MonoBehaviour {
 
 #region PRIVATE_WINLOSECONDITION_METHODS
 
-    private void ChangeHealth(int i)
+    public void ChangeHealth(int i)
     {
         health -= i;
-        //UI Slider to indicate health;
+        healtSlider.value = health;
+        print(health + ": " + i);
+
         if (health <= 0)
         {
-            //Lose Condition.
+            SceneManager.LoadScene("LoseScene");
         }
     }
 
@@ -186,8 +180,14 @@ public class GameProgress : MonoBehaviour {
     {
         if (it._itemID == _itemIDForWin)
         {
-            SceneManager.LoadScene("WinScene");
+            Invoke("Win", 3f);
         }
+    }
+
+    private void Win()
+    {
+        SceneManager.LoadScene("WinScene");
+        CancelInvoke("Win");
     }
 
     #endregion PRIVATE_WINLOSECONDITION_METHODS

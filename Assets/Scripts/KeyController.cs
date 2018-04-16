@@ -145,7 +145,7 @@ public class KeyController : MonoBehaviour
         }
         else
         {
-            _textManager.AddActionToQueue("Could not merge these items");
+            _textManager.AddActionToQueue("Select Items that are capable of merging.");
         }
     }
 }

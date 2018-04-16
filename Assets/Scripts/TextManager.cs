@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -185,13 +186,30 @@ public class TextManager : MonoBehaviour {
             count++;
             performedAction.Enqueue(action);
             SetDescriptionText();
+            Invoke("RemovePerformedAction", 7);
         }
         else
         {
             performedAction.Dequeue();
             performedAction.Enqueue(action);
-           
             SetDescriptionText();
+            Invoke("RemovePerformedAction", 7);
+            
+        }
+    }
+
+    private void RemovePerformedAction()
+    {
+        if(count > 0)
+        {
+            count--;
+            performedAction.Dequeue();
+            SetDescriptionText();
+            Invoke("RemovePerformedAction", 7);
+        }
+        else
+        {
+            CancelInvoke("RemovePerformedAction");
         }
     }
 
