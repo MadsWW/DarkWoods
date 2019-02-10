@@ -1,13 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemButton : MonoBehaviour
 {
-
-
-
     Item _buttonItem;
     Text _buttonText;
     Button _button;
@@ -96,9 +91,4 @@ public class ItemButton : MonoBehaviour
         mergeButton = _button;
         GetComponent<Image>().color = Color.yellow;
     }
-
-
-
-
-
 }

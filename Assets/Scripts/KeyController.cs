@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 
 public class KeyController : MonoBehaviour
 {
-    //Make Custom Events for each separate button to make more Methods private. ##
+    //TODO Make Custom Events for each separate button to make more Methods private. 
+    //TODO Combine the EnterNextRoom Functions.
 
 
     [Header("Holds Scripts named:")]
@@ -74,6 +73,11 @@ public class KeyController : MonoBehaviour
     //Sets Description Text of current Room
     public void InspectRoom()
     {
+        if (!_gameProgress.TimeText.enabled)
+        {
+            _gameProgress.TimeText.enabled = true;
+        }
+
         int roomNumber = _worldCreator._worldCoor[x, y] - 1;
         Room room = _textManager._rooms[roomNumber];
         _textManager.AddActionToQueue(room._roomDescription);
@@ -82,6 +86,8 @@ public class KeyController : MonoBehaviour
     //Sets text depending if grabitem is possible.
     public void GrabItem()
     {
+        EnableNavButtons();
+
         Room room = _textManager._rooms[_worldCreator._worldCoor[x, y] - 1];
         Item itemNeeded = room._requiredItemForItem;
         Item item = room._item;
@@ -101,6 +107,18 @@ public class KeyController : MonoBehaviour
         else
         {
             _textManager.AddActionToQueue(_textManager._cantPickupItem);
+        }
+    }
+
+    private void EnableNavButtons()
+    {
+        if (_buttons[0].gameObject.activeSelf) { return; }
+        else
+        {
+            foreach(Button button in _buttons)
+            {
+                button.gameObject.SetActive(true);
+            }
         }
     }
 

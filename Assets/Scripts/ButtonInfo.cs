@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonInfo : MonoBehaviour
@@ -10,7 +8,7 @@ public class ButtonInfo : MonoBehaviour
 
     private GameProgress gameProg;
 
-    public int _healthCost;
+    public int TimeCost;
 
     private void Start()
     {
@@ -30,8 +28,8 @@ public class ButtonInfo : MonoBehaviour
         text.text = "Tip: Hover over Buttons.";
     }
 
-    public void PassDamage()
+    public void PassTimeTaken()
     {
-        gameProg.ChangeHealth(_healthCost);
+        gameProg.AddTimeToTimer(TimeCost);
     }
 }

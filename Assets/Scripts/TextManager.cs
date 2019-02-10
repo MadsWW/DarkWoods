@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -70,8 +69,8 @@ public class TextManager : MonoBehaviour {
 		XmlNodeList roomTextList = roomData.GetElementsByTagName ("RoomText");
 		XmlNodeList roomDescriptionList = roomData.GetElementsByTagName ("RoomDescription");
 		XmlNodeList roomItemList = roomData.GetElementsByTagName("RoomItem");
-		XmlNodeList roomItemNeededList = roomData.GetElementsByTagName("NeedItem");
-		XmlNodeList roomItemItemList = roomData.GetElementsByTagName("NeedItemItem");
+		XmlNodeList roomItemNeededList = roomData.GetElementsByTagName("GetInRoom");
+		XmlNodeList roomItemItemList = roomData.GetElementsByTagName("GetRoomItem");
         XmlNodeList Direction = roomData.GetElementsByTagName("Direction");
 
         // Takes data from XMLItem to individual lists.
@@ -185,17 +184,15 @@ public class TextManager : MonoBehaviour {
         {
             count++;
             performedAction.Enqueue(action);
-            SetDescriptionText();
-            Invoke("RemovePerformedAction", 7);
         }
         else
         {
             performedAction.Dequeue();
             performedAction.Enqueue(action);
-            SetDescriptionText();
-            Invoke("RemovePerformedAction", 7);
-            
         }
+
+        SetDescriptionText();
+        Invoke("RemovePerformedAction", 10);
     }
 
     private void RemovePerformedAction()
@@ -205,7 +202,7 @@ public class TextManager : MonoBehaviour {
             count--;
             performedAction.Dequeue();
             SetDescriptionText();
-            Invoke("RemovePerformedAction", 7);
+            Invoke("RemovePerformedAction", 10);
         }
         else
         {

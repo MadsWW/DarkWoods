@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +10,7 @@ public class GameProgress : MonoBehaviour {
     public Transform invTransform;
 
     //Item For Win Condition
-    public int _itemIDForWin;
+    private int _itemIDForWin = 12;
     public string ItemTakenText;
 
     private List<GameObject> inventory = new List<GameObject>();
@@ -19,9 +18,23 @@ public class GameProgress : MonoBehaviour {
     private float buttonHeight;
     private Vector3 ogTransform;
 
-    // initial health and deprectiation depending on good or bad move.
-    public Slider healtSlider;
-    private int health = 120;
+
+    public Text TimeText;
+    private int beginHour = 16;
+    private int beginMin = 3;
+
+    private int currentHour = 16;
+    private int currentMinute = 3;
+
+    private int endHour = 20;
+    private int endMin = 0;
+
+    private void Start()
+    {
+        currentHour = beginHour;
+        currentMinute = beginMin;
+        TimeText.text = string.Format("{0}:{1}", GetCurrentHour(), GetCurrentMinute());
+    }
 
     #region PUBLIC_FUNCTIONS
 
@@ -35,7 +48,7 @@ public class GameProgress : MonoBehaviour {
         {
             if (gotItemReqToEnter && room._requiredItemToEnter != null)
             {
-                //RemoveFromInventory(ItemButton.selectedButton); //Enable if you want items removed when going in room with another item.
+                RemoveFromInventory(ItemButton.selectedButton);
                 room._requiredItemToEnter = null;
             }
             return true;
@@ -57,7 +70,7 @@ public class GameProgress : MonoBehaviour {
             // Need Required Item to grab item and that item I need to grab must not be null.
             if (itemReq && room._requiredItemForItem != null)
             {
-                //RemoveFromInventory(ItemButton.selectedButton); //Enable if you want items removed when grabbing item in room with another item.
+                RemoveFromInventory(ItemButton.selectedButton);
                 room._requiredItemForItem = null;  
             }
             //Check if item is not grabbed yet and there is an item in the room.
@@ -107,7 +120,6 @@ public class GameProgress : MonoBehaviour {
     }
     
     #endregion PUBLIC_FUNCTIONS
-
 
     #region PRIVATE_INVENTORY_METHODS
 
@@ -159,28 +171,81 @@ public class GameProgress : MonoBehaviour {
 
     #endregion PRIVATE_INVENTORY_METHODS
 
+    #region INGAME_TIME_METHODS
 
-#region PRIVATE_WINLOSECONDITION_METHODS
-
-    public void ChangeHealth(int i)
+    public void AddTimeToTimer(int timePassed)
     {
-        health -= i;
-        healtSlider.value = health;
-        print(health + ": " + i);
+        currentMinute += timePassed;
+        CalculateTimeToClockTime();
 
-        if (health <= 0)
+        string hourText = GetCurrentHour();
+        string minuteText = GetCurrentMinute();
+
+        TimeText.text = string.Format("{0}:{1}", hourText, minuteText);
+        TimeText.color = Color.Lerp(Color.white, Color.black, CalculateColorTimeLerp());
+    }
+
+    private string GetCurrentHour()
+    {
+        if (currentHour < 10) { return string.Format("0{0}", currentHour); }
+        else{ return currentHour.ToString(); }
+    }
+
+    private string GetCurrentMinute() //TODO Can be one function pass min/hour as parameter
+    {
+        string timeInMin = "";
+
+        if (currentMinute < 10) { timeInMin = string.Format("0{0}", currentMinute); return timeInMin; }
+        else return currentMinute.ToString();
+    }
+
+    private void CalculateTimeToClockTime()
+    {
+        if (currentMinute >= 60)
         {
-            SceneManager.LoadScene("LoseScene");
+            int timeOverHour = currentMinute - 60;
+            currentMinute = 0 + timeOverHour;
+            currentHour++;
+        }
+
+        if (currentHour >= 24)
+        {
+            int hourOverHour = currentHour - 24;
+            currentHour = 0 + hourOverHour;
         }
     }
 
-    //Wins if a certain item is grabbed.
-    //WinCondition needs to be changed. ##
+    private float CalculateColorTimeLerp()
+    {
+        float hoursLeft = endHour - currentHour;
+        float minutesLeft = endMin - currentMinute;
+        float timeLeftInMinutes = (hoursLeft * 60) + minutesLeft;
+
+        float beginHourLeft = endHour - beginHour;
+        float beginMinLeft = endMin - beginMin;
+        float timeLeftAtStart = (beginHourLeft * 60) + beginMinLeft;
+
+        return (timeLeftInMinutes - timeLeftAtStart) / (0 - timeLeftAtStart);
+    }
+
+
+
+    #endregion //INGAME_TIME_METHODS
+
+    #region WINLOSE_CONDITIONS
+
     private void CheckForWin(Item it)
     {
         if (it._itemID == _itemIDForWin)
         {
-            Invoke("Win", 3f);
+            if (HasTimeRemaining())
+            {
+                Invoke("Win", 3f);
+            }
+            else
+            {
+                Invoke("Lose", 3f);
+            }
         }
     }
 
@@ -190,6 +255,21 @@ public class GameProgress : MonoBehaviour {
         CancelInvoke("Win");
     }
 
-    #endregion PRIVATE_WINLOSECONDITION_METHODS
+    private void Lose()
+    {
+        SceneManager.LoadScene("LoseScene");
+        CancelInvoke("Lose");
+    }
+
+    private bool HasTimeRemaining()
+    {
+        if (currentHour <= endHour && currentMinute < endMin)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    #endregion //WINLOSE_CONDITION
 
 }

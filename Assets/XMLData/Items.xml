@@ -2,21 +2,21 @@
 
 	<Item>
 		<ItemID>1</ItemID>
-		<ItemName>Machete</ItemName>
-    <ItemMergeWith>0</ItemMergeWith>
-    <ItemMergeTo>0</ItemMergeTo>
+		<ItemName>Empty Torch</ItemName>
+    <ItemMergeWith>2</ItemMergeWith>
+    <ItemMergeTo>3</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>2</ItemID>
-		<ItemName>Crowbar</ItemName>
-    <ItemMergeWith>0</ItemMergeWith>
-    <ItemMergeTo>0</ItemMergeTo>
+		<ItemName>Batteries</ItemName>
+    <ItemMergeWith>1</ItemMergeWith>
+    <ItemMergeTo>3</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>3</ItemID>
-		<ItemName>Key</ItemName>
+		<ItemName>Full Torch</ItemName>
     <ItemMergeWith>0</ItemMergeWith>
     <ItemMergeTo>0</ItemMergeTo>
 	</Item>
@@ -24,55 +24,62 @@
 	<Item>
 		<ItemID>4</ItemID>
 		<ItemName>Rope</ItemName>
-    <ItemMergeWith>9</ItemMergeWith>
-    <ItemMergeTo>10</ItemMergeTo>
+    <ItemMergeWith>5</ItemMergeWith>
+    <ItemMergeTo>6</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>5</ItemID>
-		<ItemName>Batteries</ItemName>
-    <ItemMergeWith>8</ItemMergeWith>
-    <ItemMergeTo>11</ItemMergeTo>
+		<ItemName>Carabiner</ItemName>
+    <ItemMergeWith>4</ItemMergeWith>
+    <ItemMergeTo>6</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>6</ItemID>
-		<ItemName>Rusted Axe</ItemName>
+		<ItemName>Climbing Gear</ItemName>
     <ItemMergeWith>0</ItemMergeWith>
     <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
 	<Item>
 		<ItemID>7</ItemID>
-		<ItemName>Walky Talky</ItemName>
+		<ItemName>Machete</ItemName>
     <ItemMergeWith>0</ItemMergeWith>
     <ItemMergeTo>0</ItemMergeTo>
 	</Item>
 
   <Item>
     <ItemID>8</ItemID>
-    <ItemName>Torch (Empty)</ItemName>
-    <ItemMergeWith>5</ItemMergeWith>
-    <ItemMergeTo>11</ItemMergeTo>
+    <ItemName>Key</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
   </Item>
   
   <Item>
     <ItemID>9</ItemID>
-    <ItemName>Carabiner</ItemName>
-    <ItemMergeWith>4</ItemMergeWith>
-    <ItemMergeTo>10</ItemMergeTo>
+    <ItemName>Shiny Rock</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
   </Item>
 
   <Item>
     <ItemID>10</ItemID>
-    <ItemName>Climbing Gear</ItemName>
+    <ItemName>Map</ItemName>
     <ItemMergeWith>0</ItemMergeWith>
     <ItemMergeTo>0</ItemMergeTo>
   </Item>
 
   <Item>
     <ItemID>11</ItemID>
-    <ItemName>Torch (Full)</ItemName>
+    <ItemName>Crowbar</ItemName>
+    <ItemMergeWith>0</ItemMergeWith>
+    <ItemMergeTo>0</ItemMergeTo>
+  </Item>
+
+  <Item>
+    <ItemID>12</ItemID>
+    <ItemName>Walky Talky</ItemName>
     <ItemMergeWith>0</ItemMergeWith>
     <ItemMergeTo>0</ItemMergeTo>
   </Item>

@@ -3,133 +3,177 @@
 	<Room>
     <RoomID>1</RoomID>
 		<RoomName>0,1 - Dirt Path</RoomName>
-		<RoomText>You hear a loud yell, when you look back you find your friend laying on the floor harmed. When you further inspect him you see that his leg is broken.</RoomText>
-		<RoomDescription>Looks bad, I need to find help, maybe in the Fire Watch Tower nearby. First look what I have on me.</RoomDescription>
-		<RoomItem>5</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
+		<RoomText>You hear a loud yell, when you look back you find your friend laying on the floor harmed. When you further inspect him you see that his leg is broken. (Inspect Room)</RoomText>
+		<RoomDescription>You: "Looks bad, I need to find help, maybe in the Fire Watch Tower nearby." Him: "Here have my watch and don't forget to take the map." (Take Item)</RoomDescription>
+		<RoomItem>10</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>North</Direction>
+	</Room>
+  
+  <Room>
+    <RoomID>2</RoomID>
+		<RoomName>0,3 Blight River</RoomName>
+		<RoomText>The river flows calm, the miners probably washed their gold here in the old days, looking at the river bed.</RoomText>
+		<RoomDescription>Some old rusted items lay out scattered on the floor nearby the river, maybe something usefull lays between it.</RoomDescription>
+		<RoomItem>11</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
 		<Direction>North</Direction>
 	</Room>
 
 	<Room>
-    <RoomID>2</RoomID>
-		<RoomName>1,0 - Abandoned Hut</RoomName>
-		<RoomText>It looks like no one has been here for a while, everthing is covered with dust.</RoomText>
-		<RoomDescription>Still some stuff scattered around the hut, maybe there is something usefull.</RoomDescription>
-		<RoomItem>3</RoomItem>
-		<NeedItem>1</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
-		<Direction>East</Direction>
-	</Room>
-
-	<Room>
     <RoomID>3</RoomID>
-		<RoomName>1,1 - Overgrown Path</RoomName>
-		<RoomText>On the left everything is overgrown. It seems some small animals have been crossing this path.</RoomText>
-		<RoomDescription>When you take another step, you feel something strange underneath your foot.</RoomDescription>
-		<RoomItem>9</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
-		<Direction>North, South, West</Direction>
+		<RoomName>1,0 - Abandoned Hut</RoomName>
+		<RoomText>On your East there is the path you've just cut. It looks like no one has been in the hut for a while, everthing is covered with dust.</RoomText>
+		<RoomDescription>Still some stuff scattered around the hut, should be something usefull here, hopefully.</RoomDescription>
+		<RoomItem>1</RoomItem>
+		<GetInRoom>7</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>East</Direction>
 	</Room>
 
 	<Room>
     <RoomID>4</RoomID>
-		<RoomName>2,1 - Wildlife CrossRoad</RoomName>
-		<RoomText>A crisscross of animal footprints are to been seen on the ground. I think i see a bear footprint. At your North you see a rockwall, seems dangerous.</RoomText>
-		<RoomDescription>Going up the mountain doesn't look safe without some gear.</RoomDescription>
+		<RoomName>1,1 - Overgrown Path</RoomName>
+		<RoomText>On your North there is a path, on your West everything is overgrown with vines. It seems some small animals have been crossing this path.</RoomText>
+		<RoomDescription>The ground is covered with rock and tree roots, I better watch my step.</RoomDescription>
 		<RoomItem>0</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
-		<Direction>North, South, East</Direction>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>North, South, West</Direction>
 	</Room>
-
-	<Room>
+  
+  <Room>
     <RoomID>5</RoomID>
-		<RoomName>2,2 - Old Mining Route</RoomName>
-		<RoomText>The traintrack you walk on probably have been used by the miners in the old days. </RoomText>
-		<RoomDescription>Something is hanging from a low branch of that tree.</RoomDescription>
-		<RoomItem>8</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
-		<Direction>East, West</Direction>
-	</Room>
-
-	<Room>
-    <RoomID>6</RoomID>
-		<RoomName>2,3 - Mine Entrance</RoomName>
-		<RoomText>An old Mine, it's hammered shut and has an warning sign on it. The path up ahead looks risky, loose rocks everywhere. But it should be fine if I take it slow.</RoomText>
-		<RoomDescription>Through the gaps in the wood, you can fagely spot something out, but I can't reach it.</RoomDescription>
-		<RoomItem>6</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>2</NeedItemItem>
-		<Direction>North, West</Direction>
-	</Room>
-
-	<Room>
-    <RoomID>7</RoomID>
-		<RoomName>3,0 - Firewatch Outpost</RoomName>
-		<RoomText>Finally, I've reached the watchtower. Now I need to find that walky talky.</RoomText>
-		<RoomDescription>A lockbox sits in the corner of the room, I need to open it.</RoomDescription>
-		<RoomItem>7</RoomItem>
-		<NeedItem>3</NeedItem>
-		<NeedItemItem>2</NeedItemItem>
-		<Direction>East</Direction>
-	</Room>
-
-	<Room>
-    <RoomID>8</RoomID>
-		<RoomName>3,1 - Steep Mountain Path</RoomName>
-		<RoomText>I've reached the top of the cliff, the watchtower is only a few steps away.</RoomText>
-		<RoomDescription>But how do I get in, it seems locked down.</RoomDescription>
+		<RoomName>1,3 - Blight River Path</RoomName>
+		<RoomText>On the north is the way back to the mine, on your south you hear water flowing.</RoomText>
+		<RoomDescription>Nothing but a waving dirt path and some bushes around you.</RoomDescription>
 		<RoomItem>0</RoomItem>
-		<NeedItem>10</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
-		<Direction>South, West</Direction>
-	</Room>
-
-	<Room>
-    <RoomID>9</RoomID>
-		<RoomName>3,3 - Dangerous Hiking Path</RoomName>
-		<RoomText>I better watch my step, loose rocks all up the path.</RoomText>
-		<RoomDescription>When you take another step, rocks start to fall, I better be carefull.</RoomDescription>
-		<RoomItem>0</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
 		<Direction>North, South</Direction>
 	</Room>
 
 	<Room>
-    <RoomID>10</RoomID>
-		<RoomName>4,1 - Overgrown Forest</RoomName>
-		<RoomText>Dense shrubs and tall trees all around me. A big rockcliff behind me.</RoomText>
-		<RoomDescription>When you look up a tree you see a machete stuck in it deep, very hard to pull it out.</RoomDescription>
-		<RoomItem>1</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>6</NeedItemItem>
-		<Direction>East</Direction>
+    <RoomID>6</RoomID>
+		<RoomName>2,1 - Wildlife CrossRoad</RoomName>
+		<RoomText>At your North you see a rockwall, seems dangerous. A crisscross of animal footprints are to been seen on the ground, I even think I see footprint a bear.</RoomText>
+		<RoomDescription>Going up the rockwall doesn't look safe without some gear.</RoomDescription>
+		<RoomItem>0</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>North, South, East</Direction>
 	</Room>
 
 	<Room>
-    <RoomID>11</RoomID>
-		<RoomName>4,2 - Old Bear Cave</RoomName>
-		<RoomText>It's really dark, I can't see what is inside. It looks like something has been living here.</RoomText>
-		<RoomDescription>I don't even dare to go in without knowing what is in there.</RoomDescription>
+    <RoomID>7</RoomID>
+		<RoomName>2,2 - Old Mining Route</RoomName>
+		<RoomText>Looking at the cut treestumps and the barren path, the miners probably had a road here a long time ago. Only one big old tree remains on the side of the path.</RoomText>
+		<RoomDescription>Something is hanging from a low branch on the tree.</RoomDescription>
 		<RoomItem>4</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>11</NeedItemItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
 		<Direction>East, West</Direction>
 	</Room>
 
 	<Room>
-    <RoomID>12</RoomID>
-		<RoomName>4,3 - Overlook on Dark Woods </RoomName>
-		<RoomText>Scary how large this forest is, no town or houses in sight, just tree tops.</RoomText>
-		<RoomDescription>Looks like more people have been here. Old fire pit, empty cans and...</RoomDescription>
-		<RoomItem>2</RoomItem>
-		<NeedItem>0</NeedItem>
-		<NeedItemItem>0</NeedItemItem>
+    <RoomID>8</RoomID>
+		<RoomName>2,3 - Mine Entrance</RoomName>
+		<RoomText>An old Mine, it's hammered shut and has an warning sign on it. The path up ahead looks risky, Mine Camp to your right and behind you a dirt pad with a sign "Bright River".</RoomText>
+		<RoomDescription>Through the gaps in the wood, you see something on the floor reflecting the light from outside, but I can't reach it.</RoomDescription>
+		<RoomItem>9</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>11</GetRoomItem>
+		<Direction>North, South, East, West</Direction>
+	</Room>
+  
+  <Room>
+    <RoomID>9</RoomID>
+		<RoomName>2,4 - Mine Camp</RoomName>
+		<RoomText>What once probably was a busy camp, now only abandoned run down cabin and huts remain. </RoomText>
+		<RoomDescription>Most of the cabins and huts are to dangerous to enter, all are close to collapsing.</RoomDescription>
+		<RoomItem>0</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>West</Direction>
+	</Room>
+
+	<Room>
+    <RoomID>10</RoomID>
+		<RoomName>3,0 - Firewatch Outpost</RoomName>
+		<RoomText>Finally, I've reached the watchtower. Now I need to find something to communicate with.</RoomText>
+		<RoomDescription>A lockbox sits in the corner of the room, I need to open it.</RoomDescription>
+		<RoomItem>12</RoomItem>
+		<GetInRoom>9</GetInRoom>
+		<GetRoomItem>8</GetRoomItem>
+		<Direction>East</Direction>
+  </Room>
+
+	<Room>
+    <RoomID>11</RoomID>
+		<RoomName>3,1 - Below Firewatch Outpost</RoomName>
+		<RoomText>I've reached the top of the cliff, the watchtower is only a few steps away. I only need to walk up the stairs.</RoomText>
+		<RoomDescription>You try to open the door and something falls on the floor. The door is locked and the lock is broken. Maybe through the window?</RoomDescription>
+		<RoomItem>8</RoomItem>
+		<GetInRoom>6</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
 		<Direction>South, West</Direction>
+	</Room>
+
+	<Room>
+    <RoomID>12</RoomID>
+		<RoomName>3,3 - Dangerous Hiking Path</RoomName>
+		<RoomText>I better watch my step, loose rocks all up the path.</RoomText>
+		<RoomDescription>When you take another step, rocks start to fall, I better be carefull.</RoomDescription>
+		<RoomItem>0</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>North, South</Direction>
+	</Room>
+
+	<Room>
+    <RoomID>13</RoomID>
+		<RoomName>4,1 - Overgrown Forest</RoomName>
+		<RoomText>A big rockcliff behind me and a big drop in front of me. Left of me dense shrubs and old cutdown treestump. </RoomText>
+		<RoomDescription>When you sit down on the stump and look around you, to clear your mind. You see something stuck in the stump.</RoomDescription>
+		<RoomItem>7</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>East</Direction>
+	</Room>
+
+	<Room>
+    <RoomID>14</RoomID>
+		<RoomName>4,2 - Old Bear Cave</RoomName>
+		<RoomText>It's really dark, I can't see what is inside. It looks like something has been living here.</RoomText>
+		<RoomDescription>I don't even dare to go in without knowing what is in there, it's really too dark.</RoomDescription>
+		<RoomItem>5</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>3</GetRoomItem>
+		<Direction>East, West</Direction>
+	</Room>
+
+	<Room>
+    <RoomID>15</RoomID>
+		<RoomName>4,3 - The Overlook</RoomName>
+		<RoomText>Scary how large this forest is, no town or houses in sight, just tree tops reaching far behind the horizon. This place has been visited recently.</RoomText>
+		<RoomDescription>Looks like more than one person has been here. Old fire pit, empty cans and...</RoomDescription>
+		<RoomItem>2</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>South, East, West</Direction>
+	</Room>
+  
+	<Room>
+    <RoomID>16</RoomID>
+		<RoomName>4,4 - Wooden Plateau</RoomName>
+		<RoomText>This looks to be build a long time ago for campers and hikers. Too relax and sit out of the wind and ejoy the view.</RoomText>
+		<RoomDescription>The construction still seems strong, but I see nothing usefull laying around.</RoomDescription>
+		<RoomItem>0</RoomItem>
+		<GetInRoom>0</GetInRoom>
+		<GetRoomItem>0</GetRoomItem>
+		<Direction>West</Direction>
 	</Room>
 
 </RoomData>
