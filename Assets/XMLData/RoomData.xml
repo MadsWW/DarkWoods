@@ -3,8 +3,8 @@
 	<Room>
     <RoomID>1</RoomID>
 		<RoomName>0,1 - Dirt Path</RoomName>
-		<RoomText>You hear a loud yell, when you look back you find your friend laying on the floor harmed. When you further inspect him you see that his leg is broken. (Inspect Room)</RoomText>
-		<RoomDescription>You: "Looks bad, I need to find help, maybe in the Fire Watch Tower nearby." Him: "Here have my watch and don't forget to take the map." (Take Item)</RoomDescription>
+		<RoomText>You hear a loud yell, when you look back you find your friend laying on the floor harmed. When you further inspect him you see that his leg is broken. (Inspect Surrounding)</RoomText>
+		<RoomDescription>You: "Looks bad, I need to find help, maybe in the Fire Watch Tower nearby." Him: "Here have my watch and don't forget to take the map." (Grab Item)</RoomDescription>
 		<RoomItem>10</RoomItem>
 		<GetInRoom>0</GetInRoom>
 		<GetRoomItem>0</GetRoomItem>
@@ -113,7 +113,7 @@
 	<Room>
     <RoomID>11</RoomID>
 		<RoomName>3,1 - Below Firewatch Outpost</RoomName>
-		<RoomText>I've reached the top of the cliff, the watchtower is only a few steps away. I only need to walk up the stairs.</RoomText>
+		<RoomText>I've reached the top of the cliff, the watchtower is to my west, it seems to be locked. Better have a good look first.</RoomText>
 		<RoomDescription>You try to open the door and something falls on the floor. The door is locked and the lock is broken. Maybe through the window?</RoomDescription>
 		<RoomItem>8</RoomItem>
 		<GetInRoom>6</GetInRoom>

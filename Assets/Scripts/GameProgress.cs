@@ -3,7 +3,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public delegate void OnGameWonEvent(SaveData data);
+
 public class GameProgress : MonoBehaviour {
+
+    public event OnGameWonEvent GameWonEvent;
 
     //Button Prefab + Parent Transform
     public GameObject ItemBut;
@@ -18,16 +22,18 @@ public class GameProgress : MonoBehaviour {
     private float buttonHeight;
     private Vector3 ogTransform;
 
-
+    //Time Variables
     public Text TimeText;
     private int beginHour = 16;
     private int beginMin = 3;
 
-    private int currentHour = 16;
-    private int currentMinute = 3;
+    private int currentHour = 0;
+    private int currentMinute = 0;
 
     private int endHour = 20;
     private int endMin = 0;
+
+    private bool _hasTimeLeft = true;
 
     private void Start()
     {
@@ -175,14 +181,18 @@ public class GameProgress : MonoBehaviour {
 
     public void AddTimeToTimer(int timePassed)
     {
-        currentMinute += timePassed;
-        CalculateTimeToClockTime();
+        if (_hasTimeLeft)
+        {
+            currentMinute += timePassed;
+            CalculateTimeToClockTime();
+            HasTimeRemaining();
 
-        string hourText = GetCurrentHour();
-        string minuteText = GetCurrentMinute();
+            string hourText = GetCurrentHour();
+            string minuteText = GetCurrentMinute();
 
-        TimeText.text = string.Format("{0}:{1}", hourText, minuteText);
-        TimeText.color = Color.Lerp(Color.white, Color.black, CalculateColorTimeLerp());
+            TimeText.text = string.Format("{0}:{1}", hourText, minuteText);
+            TimeText.color = Color.Lerp(Color.white, Color.black, CalculateColorTimeLerp());
+        }
     }
 
     private string GetCurrentHour()
@@ -238,7 +248,7 @@ public class GameProgress : MonoBehaviour {
     {
         if (it._itemID == _itemIDForWin)
         {
-            if (HasTimeRemaining())
+            if (_hasTimeLeft)
             {
                 Invoke("Win", 3f);
             }
@@ -251,6 +261,9 @@ public class GameProgress : MonoBehaviour {
 
     private void Win()
     {
+        SaveData data = new SaveData();
+        data.GameWon = 1;
+        GameWonEvent(data);
         SceneManager.LoadScene("WinScene");
         CancelInvoke("Win");
     }
@@ -261,13 +274,16 @@ public class GameProgress : MonoBehaviour {
         CancelInvoke("Lose");
     }
 
-    private bool HasTimeRemaining()
+    private void HasTimeRemaining()
     {
-        if (currentHour <= endHour && currentMinute < endMin)
+        float timeLeftHour = endHour - currentHour;
+        float timeLeftMin = endMin - currentMinute;
+        float timeLeft = (timeLeftHour * 60) + timeLeftMin;
+
+        if (timeLeft < 0)
         {
-            return true;
+            _hasTimeLeft = false;
         }
-        return false;
     }
 
     #endregion //WINLOSE_CONDITION
